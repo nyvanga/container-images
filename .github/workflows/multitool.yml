@@ -28,3 +28,9 @@ jobs:
       env:
         IMAGE_TAG: nyvanga/multitool:latest
       run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG
+
+    - name: Build and push multitool-k8s
+      working-directory: multitool-k8s/
+      env:
+        IMAGE_TAG: nyvanga/multitool-k8s:latest
+      run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG

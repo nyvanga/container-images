@@ -1,0 +1,55 @@
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: multitool-k8s-role
+rules:
+  - apiGroups: [""]
+    resources: ["nodes"]
+    verbs: ["get", "list", "watch"]
+
+---
+
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: multitool-k8s-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: multitool-k8s-role
+subjects:
+- kind: ServiceAccount
+  name: multitool-k8s-serviceaccount
+  namespace: default
+
+---
+
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: multitool-k8s-serviceaccount
+  namespace: default
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multitool-k8s
+  namespace: default
+spec:
+  selector:
+    matchLabels:
+      app: multitool-k8s
+  replicas: 1
+  template:
+    metadata:
+      name: multitool-k8s
+      labels:
+        app: multitool-k8s
+      annotations:
+    spec: 
+      serviceAccountName: multitool-k8s-serviceaccount
+      containers:
+      - name: multitool-k8s
+        image: nyvanga/multitool-k8s
+        imagePullPolicy: Always

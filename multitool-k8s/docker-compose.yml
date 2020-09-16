@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  test_build_multitool_k8s:
+    build: .
+    image: test_build_multitool_k8s
+    container_name: test_build_multitool_k8s
