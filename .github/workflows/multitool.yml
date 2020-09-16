@@ -1,0 +1,30 @@
+name: Multitool
+
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+
+on:
+  repository_dispatch:
+    types: build-multitool-image
+  push:
+    paths:
+      - .github/workflows/multitool.yml
+      - 'multitool/**'
+      - 'multitool-k8s/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push multitool
+      working-directory: multitool/
+      env:
+        IMAGE_TAG: nyvanga/multitool:latest
+      run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG

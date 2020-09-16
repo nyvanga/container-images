@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  test_build_multitool:
+    build: .
+    image: test_build_multitool
+    container_name: test_build_multitool
+    entrypoint: ["/bin/sleep", "infinity"]
