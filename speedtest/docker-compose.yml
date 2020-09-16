@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  test_build_speedtest:
+    build: .
+    image: test_build_speedtest
+    container_name: test_build_speedtest
