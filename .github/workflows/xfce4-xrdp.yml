@@ -1,0 +1,29 @@
+name: Xfce4-xrdp
+
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+
+on:
+  repository_dispatch:
+    types: build-xfce4-xrdp-image
+  push:
+    paths:
+      - .github/workflows/xfce4-xrdp.yml
+      - 'xfce4-xrdp/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push xfce4 xrdp
+      working-directory: xfce4-xrdp/
+      env:
+        IMAGE_TAG: nyvanga/xfce4-xrdp:latest
+      run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG

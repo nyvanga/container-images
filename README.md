@@ -11,3 +11,4 @@ All images are published on https://hub.docker.com/u/nyvanga
 - [Webserver](webserver/) (Apache + PHP FPM combo)
    - [Apache](webserver/apache/) ([Apache 2.4 on Debian](https://github.com/docker-library/httpd/tree/master/2.4))
    - [PHP](webserver/php/) ([PHP 7 FPM](https://github.com/docker-library/php/tree/master/7.4/alpine3.11/fpm))
+- [Xfce4 xrdp](xfce4-xrdp/) ([Based on Alpin Xfce4 xrdp](https://github.com/danielguerra69/alpine-xfce4-xrdp))

@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  test_build_xfce4_xrdp:
+    build: .
+    image: test_build_xfce4_xrdp
+    container_name: test_build_xfce4_xrdp
+    ports:
+      - 3390:3389
+    volumes:
+      - user-home:/home/alpine
+    environment:
+      - TZ=Europe/Copenhagen
+
+volumes:
+  user-home:
