@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  test_build_webserver_apache:
+    build:
+      context: .
+      dockerfile: apache/Dockerfile
+    image: test_build_webserver_apache
+    container_name: test_build_webserver_apache
+    ports:
+      - 8080:8080
+    volumes:
+      - ./test/site.conf:/usr/local/apache2/conf/site.conf:ro
+      - ./test:/usr/local/apache2/htdocs:ro
+    environment:
+      - TZ=Europe/Copenhagen
+      - PHP_HOST=test_build_webserver_php:9000
+
+  test_build_webserver_php:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    image: test_build_webserver_php
+    container_name: test_build_webserver_php
+    volumes:
+      - ../../:/repos:ro
+    environment:
+      - TZ=Europe/Copenhagen

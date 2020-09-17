@@ -1,0 +1,35 @@
+name: Webserver
+
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+
+on:
+  repository_dispatch:
+    types: build-webserver-image
+  push:
+    paths:
+      - .github/workflows/webserver.yml
+      - 'webserver/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push webserver-apache
+      working-directory: webserver/
+      env:
+        IMAGE_TAG: nyvanga/webserver-apache:latest
+      run: docker build . --file apache/Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG
+
+    - name: Build and push webserver-php
+      working-directory: webserver/
+      env:
+        IMAGE_TAG: nyvanga/webserver-php:latest
+      run: docker build . --file php/Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG
