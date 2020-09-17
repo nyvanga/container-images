@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  test_build_gitlist:
+    build: .
+    image: test_build_gitlist
+    container_name: test_build_gitlist
+    ports:
+      - 8080:8080
+    volumes:
+      - ../../:/repos:ro
+    environment:
+      - TZ=Europe/Copenhagen
