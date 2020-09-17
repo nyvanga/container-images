@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  test_build_tinyproxy:
+    build: .
+    image: test_build_tinyproxy
+    container_name: test_build_tinyproxy
+    ports:
+      - 8888:8888
+    environment:
+      - TZ=Europe/Copenhagen
