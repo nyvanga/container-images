@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  test_build_apache:
+    build: .
+    image: test_build_apache
+    container_name: test_build_apache
+    ports:
+      - 8080:8080
+    volumes:
+      - ./test/site.conf:/usr/local/apache2/conf/site.conf:ro
+      - ./test:/usr/local/apache2/htdocs:ro
+    environment:
+      - TZ=Europe/Copenhagen
+
+  test_gitlist:
+    image: nyvanga/gitlist
+    container_name: test_gitlist
+    volumes:
+      - ../../:/repos:ro
+    environment:
+      - TZ=Europe/Copenhagen
