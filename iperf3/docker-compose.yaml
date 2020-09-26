@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  test_build_iperf3:
+    build: .
+    image: test_build_iperf3
+    container_name: test_build_iperf3
+    ports:
+      - 5201:5201
+    environment:
+      - TZ=Europe/Copenhagen

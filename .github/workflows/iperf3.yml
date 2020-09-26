@@ -1,0 +1,29 @@
+name: iperf3
+
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+
+on:
+  repository_dispatch:
+    types: build-iperf3-image
+  push:
+    paths:
+      - .github/workflows/iperf3.yml
+      - 'iperf3/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push iperf3
+      working-directory: iperf3/
+      env:
+        IMAGE_TAG: nyvanga/iperf3:latest
+      run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG
