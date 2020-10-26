@@ -1,0 +1,29 @@
+name: Tresorit
+
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions
+
+on:
+  repository_dispatch:
+    types: build-tresorit-image
+  push:
+    paths:
+      - .github/workflows/tresorit.yml
+      - 'tresorit/**'
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build and push tresorit
+      working-directory: tresorit/
+      env:
+        IMAGE_TAG: nyvanga/tresorit:latest
+      run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG

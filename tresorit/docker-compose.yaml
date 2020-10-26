@@ -1,0 +1,11 @@
+version: '3'
+
+services:
+  test_build_tresorit:
+    build: .
+    image: test_build_tresorit
+    container_name: test_build_tresorit
+    volumes:
+      - ./Profiles:/home/tresorit/Profiles
+    environment:
+      - TZ=Europe/Copenhagen
