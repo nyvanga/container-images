@@ -6,6 +6,12 @@ services:
     image: test_build_tinyproxy
     container_name: test_build_tinyproxy
     ports:
-      - 8888:8888
+      - 8989:8989
     environment:
       - TZ=Europe/Copenhagen
+      - TINYPROXY_PORT=8989
+      - TINYPROXY_BIND=127.0.0.1
+      - TINYPROXY_ALLOW_1=192.168.0.0/16
+      - TINYPROXY_ALLOW_2=172.16.0.0/12
+      - TINYPROXY_ALLOW_3=10.0.0.0/8
+      - TINYPROXY_BASICAUTH=abe kat
