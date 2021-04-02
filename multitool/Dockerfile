@@ -12,6 +12,10 @@ RUN set -x \
     && rm -rf /tmp/* /var/cache/apk/* \
     && pip3 install --no-cache-dir docopt speedtest-cli
 
+COPY .gitconfig /root/
+
 COPY bashrc.sh /root/.bashrc
+
+COPY git-* /usr/local/bin/
 
 ENTRYPOINT ["/bin/bash"]

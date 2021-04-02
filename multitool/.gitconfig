@@ -1,0 +1,6 @@
+[format]
+	pretty = format:%C(yellow)%h %C(magenta)%ci %C(green)%<(15)%aN %C(auto)%d %C(white)%s
+[rebase]
+	instructionFormat = %<(15)%aN %s
+[pull]
+	rebase = true
