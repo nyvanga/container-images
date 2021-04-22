@@ -10,6 +10,7 @@ on:
       - .github/workflows/multitool.yml
       - 'multitool/**'
       - 'multitool-k8s/**'
+      - 'multitool-aws/**'
 
 jobs:
 
@@ -33,4 +34,10 @@ jobs:
       working-directory: multitool-k8s/
       env:
         IMAGE_TAG: nyvanga/multitool-k8s:latest
+      run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG
+
+    - name: Build and push multitool-aws
+      working-directory: multitool-aws/
+      env:
+        IMAGE_TAG: nyvanga/multitool-aws:latest
       run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG

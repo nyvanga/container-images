@@ -7,6 +7,7 @@ All images are published on https://hub.docker.com/u/nyvanga
 - [iperf](iperf/) ([iPerf - The ultimate speed test tool for TCP, UDP and SCTP](https://iperf.fr/))
 - [Multitool](multitool/) (Multi tool image based on [Alpine](https://github.com/alpinelinux/docker-alpine) and inspired by [Network-Multitool](https://github.com/Praqma/Network-MultiTool))
 - [Multitool K8s](multitool-k8s/) (Multi tool image with kubectl included, and running ```kubectl proxy``` as entrypoint)
+- [Multitool AWS](multitool-aws/) (Multi tool image with AWS CLI v1 included)
 - [Speedtest](speedtest/) ([Speedtest](https://www.speedtest.net) minimal image)
 - [Tinyproxy](tinyproxy/) ([Tinyproxy](https://tinyproxy.github.io/) minimal image)
 - [Tresorit](tresorit/) ([Tresorit](https://tresorit.com) minimal image)
