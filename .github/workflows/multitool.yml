@@ -11,6 +11,7 @@ on:
       - 'multitool/**'
       - 'multitool-k8s/**'
       - 'multitool-aws/**'
+      - 'multitool-tf/**'
 
 jobs:
 
@@ -41,3 +42,7 @@ jobs:
       env:
         IMAGE_TAG: nyvanga/multitool-aws:latest
       run: docker build . --file Dockerfile --tag $IMAGE_TAG && docker push $IMAGE_TAG
+
+    - name: Build and push multitool-tf
+      working-directory: multitool-tf/
+      run: ./build-images.sh

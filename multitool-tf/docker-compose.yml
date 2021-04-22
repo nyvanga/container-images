@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  test_build_multitool_tf:
+    build:
+      context: .
+      args:
+        - TERRAFORM_VERSION=0.13.6
+    image: test_build_multitool_tf
+    container_name: test_build_multitool_tf
+    entrypoint: ["terraform"]
+    command: ["--version"]
