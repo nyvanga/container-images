@@ -2,7 +2,7 @@
 
 function build_tag_and_push() {
   local major_version=$1; shift
-  local version=$1; shift
+  local version=$1
   local image_tag="nyvanga/multitool-tf:${major_version}"
   docker build . --build-arg TERRAFORM_VERSION=${version} --file Dockerfile --tag ${image_tag}
   docker push ${image_tag}
