@@ -8,7 +8,16 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-export HISTTIMEFORMAT="%d/%m/%y %T "
+# add any folder in $HOME/.local to $PATH
+if [ -d $HOME/.local ]; then
+  for dir in $(/bin/ls -1 $HOME/.local); do
+    if [ -d $HOME/.local/$dir ]; then
+      export PATH="$HOME/.local/$dir:$PATH"
+    fi
+  done
+fi
+
+export HISTTIMEFORMAT="%Y.%m.%d %T "
 
 PS1='\[\e]0;$PWD\007\]' # set window title
 PS1="$PS1"'\n'          # new line
