@@ -4,7 +4,7 @@ FROM alpine:3.11
 ENV SPEEDTEST_VERSION 1.0.0
 
 RUN set -eux \
-	&& wget -q -O speedtest.tgz "https://bintray.com/ookla/download/download_file?file_path=ookla-speedtest-$SPEEDTEST_VERSION-x86_64-linux.tgz" \
+	&& wget -q -O speedtest.tgz "https://install.speedtest.net/app/cli/ookla-speedtest-$SPEEDTEST_VERSION-x86_64-linux.tgz" \
 	&& tar -xvf speedtest.tgz -C /usr/local/bin speedtest \
 	&& rm speedtest.tgz
 
